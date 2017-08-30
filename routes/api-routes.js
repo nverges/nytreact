@@ -27,11 +27,9 @@ module.exports = function(router) {
             console.log(err);
             }
             else {
-            res.send('hi');
+            res.send(doc);
             }
         });
-
-        res.send('lkafasdfklj');
     });
 
     router.get('/bryan', function(req, res) {
