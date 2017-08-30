@@ -5,6 +5,8 @@ const bodyParser = require("body-parser");
 const logger = require("morgan");
 const mongoose = require("mongoose");
 
+const Article = require('../models/Article');
+
 // -------------------------------------------------
 module.exports = function(router) {
 
@@ -18,7 +20,7 @@ module.exports = function(router) {
     router.get("/api", function(req, res) {
 
         // We will find all the records, sort it in descending order, then limit the records to 5
-        Articles.find({}).sort([
+        Article.find({}).sort([
             ["name", "descending"]
         ]).limit(5).exec(function(err, doc) {
             if (err) {
@@ -38,19 +40,20 @@ module.exports = function(router) {
 
     // This is the route we will send POST requests to save each search.
     router.post("/api", function(req, res) {
-        console.log("BODY: " + req.body.location);
+        console.log("BODY: " + req.body);
 
         // Here we'll save the location based on the JSON input.
         // We'll use Date.now() to always get the current date time
-        Articles.create({
-            location: req.body.location,
-            date: Date.now()
+        Article.create({
+            title: req.body.title,
+            date: req.body.date,
+            url: req.body.url
         }, function(err) {
             if (err) {
-            console.log(err);
+                console.log(err);
             }
             else {
-            res.send("Saved Search");
+              res.send("Saved Search");
             }
         });
     });

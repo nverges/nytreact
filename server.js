@@ -5,7 +5,7 @@ const logger = require("morgan");
 const mongoose = require("mongoose");
 
 // Require History Schema
-const Articles = require("./models/Articles.js");
+const Article = require("./models/Article.js");
 
 ///////////////// Initialize Express /////////////////
 const app = express();

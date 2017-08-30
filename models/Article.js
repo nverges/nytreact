@@ -8,22 +8,22 @@ var ArticleSchema = new Schema({
   // title is a required string
   title: {
     type: String,
-    required: true
+    // required: true
   },
   // link is a required string
   date: {
     type: String,
-    required: true
+    // required: true
   },
   // This only saves one note's ObjectId, ref refers to the Note model
   url: {
     type: String,
-    required: true
+    // required: true
   }
 });
 
 // Create the Article model with the ArticleSchema
-var Article = mongoose.model("Articles", ArticleSchema);
+var Article = mongoose.model("Article", ArticleSchema);
 
 // Export the model
 module.exports = Article;
