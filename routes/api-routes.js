@@ -10,14 +10,10 @@ const Article = require('../models/Article');
 // -------------------------------------------------
 module.exports = function(router) {
 
-    // Main "/" Route. This will redirect the user to our rendered React application
-    router.get("/", function(req, res) {
-        res.sendFile(__dirname + "/public/index.html");
-    });
 
     // This is the route we will send GET requests to retrieve our most recent search data.
     // We will call this route the moment our page gets rendered
-    router.get("/api", function(req, res) {
+    router.get("/api/saved", function(req, res) {
 
         // We will find all the records, sort it in descending order, then limit the records to 5
         Article.find({}).sort([
@@ -31,9 +27,16 @@ module.exports = function(router) {
             }
         });
     });
+    
+    
+    // Main "/" Route. This will redirect the user to our rendered React application
+    router.get("/", function(req, res) {
+        res.sendFile(__dirname + "/public/index.html");
+    });
+
 
     // This is the route we will send POST requests to save each search.
-    router.post("/api", function(req, res) {
+    router.post("/api/saved", function(req, res) {
         console.log("BODY: " + req.body);
         const { title, date, url } = req.body;
 
@@ -49,19 +52,8 @@ module.exports = function(router) {
         });
     });
 
-    // router.delete("/api/:id", function(req, res) {
-        
-    //     Article.remove({ "_id" : req.params.id }, function(err) {
-    //         if (err) {
-    //             console.log(err);
-    //         }
-    //         else {
-    //             res.send("Article Deleted");
-    //         };
-    //     });
-    // });
-
-    router.delete("/api", function(req, res) {
+    // Delete route
+    router.delete("/api/saved", function(req, res) {
         Article.findOneAndRemove({
           title: req.body.title}, function(err, doc) {
           if (err) {

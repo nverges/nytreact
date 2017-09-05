@@ -18,8 +18,9 @@ var Results = React.createClass({
         <div className="panel-body">
 
             <div className="panel panel-default">
-                <div className="panel-heading">{this.state.articleTitle} <button type="button" className="btn btn-primary pull-right btn-sm RbtnMargin">Save</button></div>
-
+                <div className="panel-heading">{this.state.articleTitle} 
+                  <button type="button" className="btn btn-primary pull-right btn-sm RbtnMargin">Save</button>
+                </div>
                 <div className="panel-body">
                     {this.state.articleDetails}
                 </div>
