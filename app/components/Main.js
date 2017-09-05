@@ -13,7 +13,6 @@ import helpers from './utils/helpers';
 
 var Main = React.createClass({
 
-
   // Here we set a generic state associated with the number of clicks
   // Note how we added in this history state variable
   getInitialState: function() {

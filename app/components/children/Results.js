@@ -6,7 +6,8 @@ var Results = React.createClass({
     return {
       title: "Search Results",
       articleTitle: "Article Title Here",
-      articleDetails: "Article Details Here"
+      articleDetails: "Article Details Here",
+      buttonStatus: "Save"
     }
   },
 
@@ -19,7 +20,7 @@ var Results = React.createClass({
 
             <div className="panel panel-default">
                 <div className="panel-heading">{this.state.articleTitle} 
-                  <button type="button" className="btn btn-primary pull-right btn-sm RbtnMargin">Save</button>
+                  <button type="button" className="btn btn-primary pull-right btn-sm RbtnMargin">{this.state.buttonStatus}</button>
                 </div>
                 <div className="panel-body">
                     {this.state.articleDetails}

@@ -24,8 +24,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
+// Declares Express static folder
 app.use(express.static("public"));
 
+// Use Router
 app.use(router);
 
 // -------------------------------------------------

@@ -6,26 +6,30 @@ import axios from 'axios';
 
 var Search = React.createClass({
 
-    // This function will respond to the user input
-    handleChange: function(event) {
-      // Here we create syntax to capture any change in text to the query terms (pre-search).
-      // See this Stack Overflow answer for more details:
-      // http://stackoverflow.com/questions/21029999/react-js-identifying-different-inputs-with-one-onchange-handler
-      var newState = {};
-      newState[event.target.id] = event.target.value;
-      this.setState(newState);
+    getInitialState: function() {
+      return { term: "" };
     },
+
+    // // This function will respond to the user input
+    // handleChange: function(event) {
+    //   // Here we create syntax to capture any change in text to the query terms (pre-search).
+    //   // See this Stack Overflow answer for more details:
+    //   // http://stackoverflow.com/questions/21029999/react-js-identifying-different-inputs-with-one-onchange-handler
+    //   var newState = {};
+    //   newState[event.target.id] = event.target.value;
+    //   this.setState(newState);
+    // },
   
-    // When a user submits...
-    handleSubmit: function(event) {
-      // preventing the form from trying to submit itself
-      event.preventDefault();
-      // Set the parent to have the search term
-      this.props.setTerm(this.state.term);
+    // // When a user submits...
+    // handleSubmit: function(event) {
+    //   // preventing the form from trying to submit itself
+    //   event.preventDefault();
+    //   // Set the parent to have the search term
+    //   this.props.setTerm(this.state.term);
   
-      // Clearing the input field after submitting
-      this.setState({ term: "" });
-    },
+    //   // Clearing the input field after submitting
+    //   this.setState({ term: "" });
+    // },
 
   render: function () {
     return (
@@ -34,7 +38,7 @@ var Search = React.createClass({
 
         <div className="panel-body">
 
-          <form onSubmit={this.handleSubmit}>
+          <form>
             <div className="form-group">
               <label for="formGroupExampleInput">Topic</label> 
               <input type="text" 

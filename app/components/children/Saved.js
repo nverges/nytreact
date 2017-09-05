@@ -6,7 +6,8 @@ var Saved = React.createClass({
       return {
         title: "Saved Articles",
         savedArticleTitle: "Saved Article Title Here",
-        savedArticleDetails: "Saved Article Details Here"
+        savedArticleDetails: "Saved Article Details Here",
+        buttonStatus: "Delete"
       }
   },
   
@@ -18,7 +19,7 @@ var Saved = React.createClass({
         <div className="panel-body">
 
             <div className="panel panel-default">
-                <div className="panel-heading">{this.state.savedArticleTitle} <button type="button" className="btn btn-primary pull-right btn-sm RbtnMargin">Delete</button></div>
+                <div className="panel-heading">{this.state.savedArticleTitle} <button type="button" className="btn btn-primary pull-right btn-sm RbtnMargin">{this.state.buttonStatus}</button></div>
 
                 <div className="panel-body">
                     {this.state.savedArticleDetails}
