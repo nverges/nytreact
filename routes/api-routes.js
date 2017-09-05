@@ -32,21 +32,14 @@ module.exports = function(router) {
         });
     });
 
-    router.get('/bryan', function(req, res) {
-        res.send('alksfjljkadfs');
-    });
-
     // This is the route we will send POST requests to save each search.
     router.post("/api", function(req, res) {
         console.log("BODY: " + req.body);
+        const { title, date, url } = req.body;
 
         // Here we'll save the location based on the JSON input.
         // We'll use Date.now() to always get the current date time
-        Article.create({
-            title: req.body.title,
-            date: req.body.date,
-            url: req.body.url
-        }, function(err) {
+        Article.create({ title, date, url }, function(err) {
             if (err) {
                 console.log(err);
             }
@@ -55,6 +48,30 @@ module.exports = function(router) {
             }
         });
     });
+
+    // router.delete("/api/:id", function(req, res) {
+        
+    //     Article.remove({ "_id" : req.params.id }, function(err) {
+    //         if (err) {
+    //             console.log(err);
+    //         }
+    //         else {
+    //             res.send("Article Deleted");
+    //         };
+    //     });
+    // });
+
+    router.delete("/api", function(req, res) {
+        Article.findOneAndRemove({
+          title: req.body.title}, function(err, doc) {
+          if (err) {
+            console.log(err);
+          }
+          else {
+            res.send(doc);
+          }
+        })
+      });
 
 };
 
