@@ -35,37 +35,6 @@ class Main extends React.Component {
     }.bind(this));
   }
 
-  // setTerm(topicStart) {
-  //   helpers.setTerm(topic, startYr, endYr)
-  // }
-
-  // If the component changes (i.e. if a search is entered)...
-  // componentDidUpdate () {
-
-  //   // Run the query for the address
-  //   helpers.runQuery(this.state.searchTerm).then(function(data) {
-  //     if (data !== this.state.results) {
-  //       console.log("Address", data);
-  //       this.setState({ results: data });
-
-  //       // After we've received the result... then post the search term to our history.
-  //       helpers.postHistory(this.state.searchTerm).then(function() {
-  //         console.log("Updated!");
-
-  //         // After we've done the post... then get the updated history
-  //         helpers.getHistory().then(function(response) {
-  //           console.log("Current History", response.data);
-
-  //           console.log("History", response.data);
-
-  //           this.setState({ history: response.data });
-
-  //         }.bind(this));
-  //       }.bind(this));
-  //     }
-  //   }.bind(this));
-  // }
-
   handleResults(results) {
     console.log("handle results")
     this.setState({
@@ -77,25 +46,25 @@ class Main extends React.Component {
 
   }
 
-    render () {
-        return (
-            
-            <div className="container">
+  render () {
+      return (
+          
+          <div className="container">
 
-                {/* Jumbotron */}
-                <div className="jumbotron">
-                    <h1>New York Times Scrubber</h1>
-                    <p>Search for Articles on the New York Times website and save them for later!</p>
-                </div>
+              {/* Jumbotron */}
+              <div className="jumbotron">
+                  <h1>New York Times Scrubber</h1>
+                  <p>Search for Articles on the New York Times website and save them for later!</p>
+              </div>
 
-                {/* Render Components */}
-                <Search  runQuery={helpers.runQuery.bind(this, this.handleResults.bind(this))}/>
-                <Results results={this.state.results} />
-                <Saved />
+              {/* Render Components */}
+              <Search  runQuery={helpers.runQuery.bind(this, this.handleResults.bind(this))}/>
+              <Results results={this.state.results} />
+              <Saved />
 
-            </div>
-        )
-    }
+          </div>
+      )
+  }
 
 };
 

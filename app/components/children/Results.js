@@ -1,6 +1,7 @@
 var React = require("react");
 
 import _ from "lodash";
+import ResultsRow from './resultsRow';
 
 class Results extends React.Component {
 
@@ -16,20 +17,13 @@ class Results extends React.Component {
 
   renderResults() {
     return _.map(this.props.results, (entry, index) => {
+      
+        // console.log(entry);
+
       return (
 
-        <div className="panel panel-default" key={entry._id}>
-
-            <div className="panel-heading">   {entry.headline.main}
-              <button type="button" className="btn btn-primary pull-right btn-sm RbtnMargin">{this.state.buttonStatus}</button>
-            </div>
-
-            <div className="panel-body">
-              {entry.web_url}
-            </div>
-
-        </div>
-                
+        <ResultsRow entry={entry} key={entry._id}/>
+      
       )
     });
   };

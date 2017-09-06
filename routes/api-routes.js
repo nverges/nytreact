@@ -35,11 +35,11 @@ module.exports = function(router) {
     // This is the route we will send POST requests to save each search.
     router.post("/api/saved", function(req, res) {
         console.log("BODY: " + req.body);
-        const { title, date, url } = req.body;
+        const { article_id, title, date, url } = req.body;
 
         // Here we'll save the location based on the JSON input.
         // We'll use Date.now() to always get the current date time
-        Article.create({ title, date, url }, function(err) {
+        Article.create({ req.body }, function(err) {
             if (err) {
                 console.log(err);
             }
