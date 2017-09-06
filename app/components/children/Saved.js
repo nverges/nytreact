@@ -1,17 +1,18 @@
 var React = require("react");
 
-var Saved = React.createClass({
+class Saved extends React.Component {
 
-  getInitialState: function() {
-      return {
+  constructor(props) {
+      super(props) 
+        this.state = {
         title: "Saved Articles",
         savedArticleTitle: "Saved Article Title Here",
         savedArticleDetails: "Saved Article Details Here",
         buttonStatus: "Delete"
       }
-  },
+  }
   
-  render: function () {
+  render() {
     return (
       <div className="panel panel-primary">
         <div className="panel-heading">{this.state.title}</div>
@@ -30,6 +31,8 @@ var Saved = React.createClass({
       </div>
     );
   }
-});
+};
 
-module.exports = Saved;
+Saved.displayName = "Saved";
+
+export default Saved;

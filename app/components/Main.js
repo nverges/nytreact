@@ -11,16 +11,20 @@ import Saved from './children/Saved';
 
 import helpers from './utils/helpers';
 
-var Main = React.createClass({
+class Main extends React.Component {
 
   // Here we set a generic state associated with the number of clicks
   // Note how we added in this history state variable
-  getInitialState: function() {
-    return { searchTerm: "", results: "", history: [] };
-  },
+  constructor (props) {
+    super(props) 
+      this.state = {
+        results: [], 
+        history: []
+      }
+  }
 
   // The moment the page renders get the History
-  componentDidMount: function() {
+  componentDidMount() {
     // Get the latest history.
     helpers.getHistory().then(function(response) {
       console.log(response);
@@ -29,36 +33,51 @@ var Main = React.createClass({
         this.setState({ history: response.data });
       }
     }.bind(this));
-  },
+  }
+
+  // setTerm(topicStart) {
+  //   helpers.setTerm(topic, startYr, endYr)
+  // }
 
   // If the component changes (i.e. if a search is entered)...
-  componentDidUpdate: function() {
+  // componentDidUpdate () {
 
-    // Run the query for the address
-    helpers.runQuery(this.state.searchTerm).then(function(data) {
-      if (data !== this.state.results) {
-        console.log("Address", data);
-        this.setState({ results: data });
+  //   // Run the query for the address
+  //   helpers.runQuery(this.state.searchTerm).then(function(data) {
+  //     if (data !== this.state.results) {
+  //       console.log("Address", data);
+  //       this.setState({ results: data });
 
-        // After we've received the result... then post the search term to our history.
-        helpers.postHistory(this.state.searchTerm).then(function() {
-          console.log("Updated!");
+  //       // After we've received the result... then post the search term to our history.
+  //       helpers.postHistory(this.state.searchTerm).then(function() {
+  //         console.log("Updated!");
 
-          // After we've done the post... then get the updated history
-          helpers.getHistory().then(function(response) {
-            console.log("Current History", response.data);
+  //         // After we've done the post... then get the updated history
+  //         helpers.getHistory().then(function(response) {
+  //           console.log("Current History", response.data);
 
-            console.log("History", response.data);
+  //           console.log("History", response.data);
 
-            this.setState({ history: response.data });
+  //           this.setState({ history: response.data });
 
-          }.bind(this));
-        }.bind(this));
-      }
-    }.bind(this));
-  },
+  //         }.bind(this));
+  //       }.bind(this));
+  //     }
+  //   }.bind(this));
+  // }
 
-    render: function() {
+  handleResults(results) {
+    console.log("handle results")
+    this.setState({
+      results: results
+    }, () => {
+      console.log("HERE")
+      console.log(this.state.results)
+    })
+
+  }
+
+    render () {
         return (
             
             <div className="container">
@@ -70,14 +89,16 @@ var Main = React.createClass({
                 </div>
 
                 {/* Render Components */}
-                <Search />
-                <Results />
+                <Search  runQuery={helpers.runQuery.bind(this, this.handleResults.bind(this))}/>
+                <Results results={this.state.results} />
                 <Saved />
 
             </div>
         )
     }
 
-});
+};
 
-module.exports = Main;
+Main.displayName = "Main";
+
+export default Main;

@@ -1,26 +1,38 @@
 // Include the axios package for performing HTTP requests (promise based alternative to request)
-var axios = require("axios");
+import axios from 'axios';
 
-// Geocoder API
-var geocodeAPI = "35e5548c618555b1a43eb4759d26b260";
+// API key
+var apikey = "e9db19e4654b4f4f9bd08840dd18671d";
 
 // Helper functions for making API Calls
 var helper = {
 
   // This function serves our purpose of running the query to geolocate.
-  runQuery: function(location) {
+  runQuery: function(callback, topic, startYr, endYr) {
 
-    console.log(location);
 
-    // Figure out the geolocation
-    var queryURL = "http://api.opencagedata.com/geocode/v1/json?query=" + location + "&pretty=1&key=" + geocodeAPI;
-    return axios.get(queryURL).then(function(response) {
-      // If get get a result, return that result's formatted address property
-      if (response.data.results[0]) {
-        return response.data.results[0].formatted;
+    console.log(callback, topic, startYr, endYr);  
+    // cleans up format of search terms
+    var q = (topic || "").trim();
+    var begin_date = (startYr || "").trim() + "0101";
+    var end_date = (endYr || "").trim() + "1231";
+
+    // runs search query
+    return axios.get("https://api.nytimes.com/svc/search/v2/articlesearch.json", {
+      params: {
+        "apikey": apikey,
+        "q": q,
+        "begin_date": begin_date,
+        "end_date": end_date
       }
-      // If we don't get any results, return an empty string
-      return "";
+    }).then(function(res) {
+      console.log("Performs the Query");
+      console.log(res.data.response.docs);
+      callback(res.data.response.docs)
+      return
+      // return res.data.response;
+    }).catch(function(err) {
+      console.log(err);
     });
   },
 
@@ -30,8 +42,8 @@ var helper = {
   },
 
   // This function posts new searches to our database.
-  postHistory: function(location) {
-    return axios.post("/api/saved", { location: location });
+  postHistory: function(topic) {
+    return axios.post("/api/saved", { title: topic });
   }
 };
 

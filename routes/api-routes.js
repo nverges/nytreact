@@ -9,7 +9,11 @@ const Article = require('../models/Article');
 
 // -------------------------------------------------
 module.exports = function(router) {
-
+    
+    // Main "/" Route. This will redirect the user to our rendered React application
+    router.get("/", function(req, res) {
+        res.sendFile(__dirname + "/public/index.html");
+    });
 
     // This is the route we will send GET requests to retrieve our most recent search data.
     // We will call this route the moment our page gets rendered
@@ -28,13 +32,6 @@ module.exports = function(router) {
         });
     });
     
-    
-    // Main "/" Route. This will redirect the user to our rendered React application
-    router.get("/", function(req, res) {
-        res.sendFile(__dirname + "/public/index.html");
-    });
-
-
     // This is the route we will send POST requests to save each search.
     router.post("/api/saved", function(req, res) {
         console.log("BODY: " + req.body);

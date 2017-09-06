@@ -1,36 +1,51 @@
 var React = require("react");
 
-var Results = React.createClass({
+import _ from "lodash";
 
-  getInitialState: function() {
-    return {
+class Results extends React.Component {
+
+  constructor(props) {
+    super(props)
+    this.state = {
       title: "Search Results",
-      articleTitle: "Article Title Here",
-      articleDetails: "Article Details Here",
+      // articleTitle: "Article Title Here",
+      // articleDetails: "Article Details Here",
       buttonStatus: "Save"
     }
-  },
+  }
 
-  render: function () {
-    return (
-      <div className="panel panel-primary">
-        <div className="panel-heading">{this.state.title}</div>
+  renderResults() {
+    return _.map(this.props.results, (entry, index) => {
+      return (
 
-        <div className="panel-body">
+        <div className="panel panel-default" key={entry._id}>
 
-            <div className="panel panel-default">
-                <div className="panel-heading">{this.state.articleTitle} 
-                  <button type="button" className="btn btn-primary pull-right btn-sm RbtnMargin">{this.state.buttonStatus}</button>
-                </div>
-                <div className="panel-body">
-                    {this.state.articleDetails}
-                </div>
+            <div className="panel-heading">   {entry.headline.main}
+              <button type="button" className="btn btn-primary pull-right btn-sm RbtnMargin">{this.state.buttonStatus}</button>
             </div>
 
+            <div className="panel-body">
+              {entry.web_url}
+            </div>
+
+        </div>
+                
+      )
+    });
+  };
+
+  render() {
+    return (
+      <div className="panel panel-primary">
+      <div className="panel-heading">{this.state.title}</div>
+        <div className="panel-body">
+          {this.renderResults()}
         </div>
       </div>
     );
   }
-});
+};
 
-module.exports = Results;
+Results.displayName = "Results";
+
+export default Results;

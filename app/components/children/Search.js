@@ -1,72 +1,82 @@
 import React from "react";
-
 import axios from 'axios'; 
 
-// import helpers from './utils/helpers';
+import helpers from '../utils/helpers'; 
 
-var Search = React.createClass({
+class Search extends React.Component {
 
-    getInitialState: function() {
-      return { term: "" };
-    },
+  constructor (props) {
+    super(props)
+    this.state= {
+      topic: "",
+      term: "",
+      searchTerm: "",
+      startYr: "",
+      endYr: "",
+    };
+  }
 
-    // // This function will respond to the user input
-    // handleChange: function(event) {
-    //   // Here we create syntax to capture any change in text to the query terms (pre-search).
-    //   // See this Stack Overflow answer for more details:
-    //   // http://stackoverflow.com/questions/21029999/react-js-identifying-different-inputs-with-one-onchange-handler
-    //   var newState = {};
-    //   newState[event.target.id] = event.target.value;
-    //   this.setState(newState);
-    // },
-  
-    // // When a user submits...
-    // handleSubmit: function(event) {
-    //   // preventing the form from trying to submit itself
-    //   event.preventDefault();
-    //   // Set the parent to have the search term
-    //   this.props.setTerm(this.state.term);
-  
-    //   // Clearing the input field after submitting
-    //   this.setState({ term: "" });
-    // },
+  // This function will respond to the user input
+  handleChange (key, event) {
+    this.setState({ [key]: event.target.value });
+  }
 
-  render: function () {
+  // When a user submits...
+  handleSubmit (event) {
+    // prevent the HTML from trying to submit a form if the user hits "Enter" instead of
+    // clicking the button
+    event.preventDefault();
+
+    // Set the parent to have the search term
+    this.props.runQuery(this.state.topic, this.state.startYr, this.state.endYr);
+    // this.setState({ topic: this.state.topic });
+
+    // this.props.runQuery(this.state.topic, this.state.startYr, this.state.endYr);
+  }
+
+  render() {
     return (
       <div className="panel panel-primary">
         <div className="panel-heading">Article Search</div>
 
         <div className="panel-body">
 
-          <form>
+          <form onSubmit={this.handleSubmit.bind(this)}>
+
             <div className="form-group">
-              <label for="formGroupExampleInput">Topic</label> 
-              <input type="text" 
-              // value={this.state.term}
+              <label htmlFor="formGroupExampleInput">Topic</label> 
+              <input 
+              value={this.state.topic}
+              type="text" 
+              onChange={this.handleChange.bind(this, "topic")}
               className="form-control" 
               id="topicInput" 
-              placeholder="Topic" />
+              placeholder="Topic" 
+              />
             </div>
 
             <div className="form-group">
-              <label for="formGroupExampleInput2">Start Year</label>
+              <label htmlFor="formGroupExampleInput2">Start Year</label>
               <input type="text" 
               className="form-control" 
               id="startYrInput" 
-              // value={this.state.startYr}
+              value={this.state.startYr}
+              onChange={this.handleChange.bind(this, "startYr")}
               placeholder="Start Year" />
             </div>
 
             <div className="form-group">
-              <label for="formGroupExampleInput2">End Year</label>
+              <label htmlFor="formGroupExampleInput2">End Year</label>
               <input type="text" 
               className="form-control" 
               id="endYrInput" 
+              value={this.state.endYr}
+              onChange={this.handleChange.bind(this, "endYr")}
               placeholder="End Year" />
             </div>
 
             <div className='text-center'>
-              <button type="submit" className="btn btn-success" id="searchbtn">Search</button>
+              <button type="submit" className="btn btn-success">Search</button>
             </div>
 
           </form>
@@ -75,6 +85,8 @@ var Search = React.createClass({
       </div>
     );
   }
-});
+};
 
-module.exports = Search;
+Search.displayName = "Search";
+
+export default Search;
