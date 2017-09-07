@@ -34,12 +34,13 @@ module.exports = function(router) {
     
     // This is the route we will send POST requests to save each search.
     router.post("/api/saved", function(req, res) {
-        console.log("BODY: " + req.body);
-        const { article_id, title, date, url } = req.body;
+        // console.log(req.body.article_id.toString());
+        // console.log(req.body);
+        // const { article_id, title, date, url } = req.body;
 
         // Here we'll save the location based on the JSON input.
         // We'll use Date.now() to always get the current date time
-        Article.create({ req.body }, function(err) {
+        Article.create( req.body , function(err) {
             if (err) {
                 console.log(err);
             }
@@ -52,7 +53,7 @@ module.exports = function(router) {
     // Delete route
     router.delete("/api/saved", function(req, res) {
         Article.findOneAndRemove({
-          title: req.body.title}, function(err, doc) {
+          _id: req.body._id}, function(err, doc) {
           if (err) {
             console.log(err);
           }
@@ -63,5 +64,3 @@ module.exports = function(router) {
       });
 
 };
-
-

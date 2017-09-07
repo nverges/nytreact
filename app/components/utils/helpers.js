@@ -42,10 +42,32 @@ var helper = {
   },
 
   // This function posts new searches to our database.
-  postHistory: function(topic) {
-    return axios.post("/api/saved", { title: topic });
-  }
+  postHistory: function(article_id, title, date, url) {
+    return axios.post("/api/saved", { 
+      article_id: article_id,
+      title: title,
+      date: date,
+      url: url
+    });
+  },
+
+  deleteHistory: function(_id) {
+      return axios({
+        method: 'delete',
+        url: '/api/saved',
+        data: _id,
+        responseType: 'json'
+      }).then(function(res) {
+        console.log("Article Deleted");
+      }).catch(function(err) {
+        console.log(err);
+      });
+    }
+  
+
 };
 
 // We export the API helper
 module.exports = helper;
+
+

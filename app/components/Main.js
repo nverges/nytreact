@@ -43,8 +43,8 @@ class Main extends React.Component {
       console.log("HERE")
       console.log(this.state.results)
     })
-
   }
+
 
   render () {
       return (
@@ -60,7 +60,7 @@ class Main extends React.Component {
               {/* Render Components */}
               <Search  runQuery={helpers.runQuery.bind(this, this.handleResults.bind(this))}/>
               <Results results={this.state.results} />
-              <Saved />
+              <Saved history={this.state.history} />
 
           </div>
       )

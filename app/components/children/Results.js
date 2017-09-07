@@ -11,19 +11,25 @@ class Results extends React.Component {
       title: "Search Results",
       // articleTitle: "Article Title Here",
       // articleDetails: "Article Details Here",
-      buttonStatus: "Save"
+      // buttonStatus: "Save"
     }
   }
 
   renderResults() {
     return _.map(this.props.results, (entry, index) => {
-      
-        // console.log(entry);
-
       return (
 
-        <ResultsRow entry={entry} key={entry._id}/>
-      
+        <ResultsRow 
+
+          saved={true} 
+          title={entry.headline.main} 
+          article_id={entry._id}
+          url={entry.web_url}
+          date={entry.pub_date}
+          key={entry._id} 
+
+        />
+    
       )
     });
   };

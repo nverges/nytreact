@@ -29,9 +29,7 @@ class Search extends React.Component {
 
     // Set the parent to have the search term
     this.props.runQuery(this.state.topic, this.state.startYr, this.state.endYr);
-    // this.setState({ topic: this.state.topic });
 
-    // this.props.runQuery(this.state.topic, this.state.startYr, this.state.endYr);
   }
 
   render() {

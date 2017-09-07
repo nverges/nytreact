@@ -1,5 +1,7 @@
 var React = require("react");
 
+import ResultsRow from "./resultsRow";
+
 class Saved extends React.Component {
 
   constructor(props) {
@@ -11,23 +13,35 @@ class Saved extends React.Component {
         buttonStatus: "Delete"
       }
   }
+
+  renderHistory() {
+    return _.map(this.props.history, (entry, index) => {
+
+      return (
+
+        <ResultsRow 
+          saved={false} 
+          article_id={entry.article_id}
+          title={entry.title}
+          date={entry.date}
+          url={entry.url}
+          key={entry._id} 
+        />
+
+      )
+    });
+  };
   
   render() {
     return (
       <div className="panel panel-primary">
+
         <div className="panel-heading">{this.state.title}</div>
 
-        <div className="panel-body">
+          <div className="panel-body">
+            {this.renderHistory()}
+          </div>
 
-            <div className="panel panel-default">
-                <div className="panel-heading">{this.state.savedArticleTitle} <button type="button" className="btn btn-primary pull-right btn-sm RbtnMargin">{this.state.buttonStatus}</button></div>
-
-                <div className="panel-body">
-                    {this.state.savedArticleDetails}
-                </div>
-            </div>
-
-        </div>
       </div>
     );
   }
