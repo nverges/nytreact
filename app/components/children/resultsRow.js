@@ -23,10 +23,10 @@ class ResultsRow extends React.Component {
                 </button>
             )
         } else {
-            console.log('ELSE', this.props.article_id);
+            console.log('ELSE', this.props._id);
             return (
             <button type="button" className="btn btn-primary pull-right btn-sm RbtnMargin"
-                onClick={helpers.deleteHistory.bind(this, this.props.article_id)}>Delete
+                onClick={helpers.deleteHistory.bind(this, this.props._id)}>Delete
             </button>
             )
         }

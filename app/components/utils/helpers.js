@@ -64,7 +64,6 @@ var helper = {
       });
     }
   
-
 };
 
 // We export the API helper

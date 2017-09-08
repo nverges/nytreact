@@ -22,7 +22,7 @@ module.exports = function(router) {
         // We will find all the records, sort it in descending order, then limit the records to 5
         Article.find({}).sort([
             ["name", "descending"]
-        ]).limit(5).exec(function(err, doc) {
+        ]).limit(10).exec(function(err, doc) {
             if (err) {
             console.log(err);
             }
@@ -34,9 +34,6 @@ module.exports = function(router) {
     
     // This is the route we will send POST requests to save each search.
     router.post("/api/saved", function(req, res) {
-        // console.log(req.body.article_id.toString());
-        // console.log(req.body);
-        // const { article_id, title, date, url } = req.body;
 
         // Here we'll save the location based on the JSON input.
         // We'll use Date.now() to always get the current date time
@@ -52,8 +49,9 @@ module.exports = function(router) {
 
     // Delete route
     router.delete("/api/saved", function(req, res) {
+        console.log(req.body);
         Article.findOneAndRemove({
-          _id: req.body._id}, function(err, doc) {
+          _id: req.body}, function(err, doc) {
           if (err) {
             console.log(err);
           }

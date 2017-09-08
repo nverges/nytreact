@@ -42,7 +42,7 @@ class Search extends React.Component {
           <form onSubmit={this.handleSubmit.bind(this)}>
 
             <div className="form-group">
-              <label htmlFor="formGroupExampleInput">Topic</label> 
+              <label htmlFor="topic">Topic</label> 
               <input 
               value={this.state.topic}
               type="text" 
@@ -54,7 +54,7 @@ class Search extends React.Component {
             </div>
 
             <div className="form-group">
-              <label htmlFor="formGroupExampleInput2">Start Year</label>
+              <label htmlFor="startYr">Start Year</label>
               <input type="text" 
               className="form-control" 
               id="startYrInput" 
@@ -64,7 +64,7 @@ class Search extends React.Component {
             </div>
 
             <div className="form-group">
-              <label htmlFor="formGroupExampleInput2">End Year</label>
+              <label htmlFor="endYr">End Year</label>
               <input type="text" 
               className="form-control" 
               id="endYrInput" 

@@ -26,6 +26,7 @@ class Saved extends React.Component {
           date={entry.date}
           url={entry.url}
           key={entry._id} 
+          _id={entry._id}
         />
 
       )
