@@ -7,11 +7,16 @@ class Saved extends React.Component {
   constructor(props) {
       super(props) 
         this.state = {
-        title: "Saved Articles",
-        savedArticleTitle: "Saved Article Title Here",
-        savedArticleDetails: "Saved Article Details Here",
-        buttonStatus: "Delete"
-      }
+          title: "Saved Articles"
+        }
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    if (this.props.history === nextProps) {
+      this.setState({ history: nextProps})
+    } else {
+      return true
+    }
   }
 
   renderHistory() {
@@ -25,6 +30,7 @@ class Saved extends React.Component {
           title={entry.title}
           date={entry.date}
           url={entry.url}
+          snippet={entry.snippet}
           key={entry._id} 
           _id={entry._id}
         />

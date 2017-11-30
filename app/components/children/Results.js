@@ -26,6 +26,7 @@ class Results extends React.Component {
           article_id={entry._id}
           url={entry.web_url}
           date={entry.pub_date}
+          snippet={entry.snippet}
           key={entry._id} 
 
         />

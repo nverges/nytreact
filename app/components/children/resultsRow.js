@@ -18,12 +18,12 @@ class ResultsRow extends React.Component {
                     this.props.article_id, 
                     this.props.title, 
                     this.props.url,
-                    this.props.date
+                    this.props.date,
+                    this.props.snippet
                     )}>Save
                 </button>
             )
         } else {
-            console.log('ELSE', this.props._id);
             return (
             <button type="button" className="btn btn-primary pull-right btn-sm RbtnMargin"
                 onClick={helpers.deleteHistory.bind(this, this.props._id)}>Delete
@@ -43,7 +43,7 @@ class ResultsRow extends React.Component {
             </div>
 
             <div className="panel-body">
-                {this.props.url}
+                {this.props.snippet}
             </div>
 
         </div>

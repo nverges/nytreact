@@ -26,7 +26,7 @@ var helper = {
         "end_date": end_date
       }
     }).then(function(res) {
-      console.log("Performs the Query");
+      console.log("Axios Response:");
       console.log(res.data.response.docs);
       callback(res.data.response.docs)
       return
@@ -42,12 +42,13 @@ var helper = {
   },
 
   // This function posts new searches to our database.
-  postHistory: function(article_id, title, date, url) {
+  postHistory: function(article_id, title, date, url, snippet) {
     return axios.post("/api/saved", { 
       article_id: article_id,
       title: title,
       date: date,
-      url: url
+      url: url,
+      snippet: snippet
     });
   },
 

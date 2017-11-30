@@ -15,6 +15,10 @@ var ArticleSchema = new Schema({
     // required: true
   },
   // link is a required string
+  snippet :{
+    type: String,
+  },
+  // No Validation
   date: {
     type: String,
     // required: true
