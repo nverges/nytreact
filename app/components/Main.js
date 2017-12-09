@@ -40,10 +40,6 @@ class Main extends React.Component {
     this.setState({
       results: results
     }, () => {
-<<<<<<< HEAD
-      // console.log("HERE")
-=======
->>>>>>> 5f091c322221ac44ba98cccdf077a7f7cbf3cab6
       console.log(this.state.results)
     })
   }
