@@ -42,12 +42,13 @@ var helper = {
   },
 
   // This function posts new searches to our database.
-  postHistory: function(article_id, title, date, url) {
+  postHistory: function(article_id, title, date, url, snippet) {
     return axios.post("/api/saved", { 
       article_id: article_id,
       title: title,
       date: date,
-      url: url
+      url: url,
+      snippet: snippet
     });
   },
 

@@ -19,6 +19,9 @@ var ArticleSchema = new Schema({
     type: String,
     // required: true
   },
+  snippet: {
+    type: String
+  },
   // This only saves one note's ObjectId, ref refers to the Note model
   url: {
     type: String,

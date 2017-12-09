@@ -40,10 +40,46 @@ class Main extends React.Component {
     this.setState({
       results: results
     }, () => {
-      console.log("HERE")
+      // console.log("HERE")
       console.log(this.state.results)
     })
   }
+
+  saveClickHandler(article_id, title, url, date, snippet) {
+
+    // save to DB
+    helpers.postHistory(
+        article_id, 
+        title, 
+        url,
+        date,
+        snippet
+    ).then((res) => {
+        // console.log(res.data);
+            // update state of Main component 'this.state.history'
+        const newState = this.state.history.concat(res.data);
+        this.setState({history: newState})
+    });
+  } 
+
+  deleteClickHandler(_id) {
+
+    // delete from DB
+    helpers.deleteHistory(
+      _id
+    ).then( (res) => {
+      // return data;
+      return res;
+      console.log(res);
+      console.log('SUCCESSSSSSSS');
+      const newState = this.state.history.splice(res);
+      return newState;
+      this.setState({history: newState});
+    });
+  }
+
+
+
 
   render () {
       return (
@@ -58,8 +94,8 @@ class Main extends React.Component {
 
               {/* Render Components */}
               <Search  runQuery={helpers.runQuery.bind(this, this.handleResults.bind(this))}/>
-              <Results results={this.state.results} />
-              <Saved history={this.state.history} />
+              <Results results={this.state.results} saveClickHandler={this.saveClickHandler.bind(this)} deleteClickHandler={this.deleteClickHandler.bind(this)} />
+              <Saved history={this.state.history} saveClickHandler={this.saveClickHandler.bind(this)} deleteClickHandler={this.deleteClickHandler.bind(this)} />
 
           </div>
       )

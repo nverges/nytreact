@@ -21,11 +21,14 @@ class Results extends React.Component {
 
         <ResultsRow 
 
+          saveClickHandler={this.props.saveClickHandler}
+          deleteClickHandler={this.props.deleteClickHandler}
           saved={true} 
           title={entry.headline.main} 
           article_id={entry._id}
           url={entry.web_url}
           date={entry.pub_date}
+          snippet={entry.snippet}
           key={entry._id} 
 
         />

@@ -20,11 +20,15 @@ class Saved extends React.Component {
       return (
 
         <ResultsRow 
+
+          saveClickHandler={this.props.saveClickHandler}
+          deleteClickHandler={this.props.deleteClickHandler}
           saved={false} 
           article_id={entry.article_id}
           title={entry.title}
           date={entry.date}
           url={entry.url}
+          snippet={entry.snippet}
           key={entry._id} 
           _id={entry._id}
         />

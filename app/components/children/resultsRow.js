@@ -13,25 +13,29 @@ class ResultsRow extends React.Component {
         if (this.props.saved === true) {
             return (
                 <button type="button" className="btn btn-primary pull-right btn-sm RbtnMargin"
-                    onClick={helpers.postHistory.bind(
-                    this, 
-                    this.props.article_id, 
-                    this.props.title, 
-                    this.props.url,
-                    this.props.date
-                    )}>Save
+                    onClick={this.props.saveClickHandler.bind(
+                        this,
+                        this.props.article_id, 
+                        this.props.title, 
+                        this.props.url,
+                        this.props.date,
+                        this.props.snippet
+                        )}>Save
                 </button>
             )
+            console.log('SAVED');
         } else {
             console.log('ELSE', this.props._id);
             return (
             <button type="button" className="btn btn-primary pull-right btn-sm RbtnMargin"
-                onClick={helpers.deleteHistory.bind(this, this.props._id)}>Delete
+                onClick={this.props.deleteClickHandler.bind(
+                    this,
+                    this.props._id)}>Delete
             </button>
             )
         }
     }
-
+ 
     render() {
         return (
         <div className="panel panel-default">
@@ -43,7 +47,7 @@ class ResultsRow extends React.Component {
             </div>
 
             <div className="panel-body">
-                {this.props.url}
+                {this.props.snippet}
             </div>
 
         </div>

@@ -42,7 +42,7 @@ module.exports = function(router) {
                 console.log(err);
             }
             else {
-              res.send("Saved Search");
+              res.send(req.body);
             }
         });
     });
