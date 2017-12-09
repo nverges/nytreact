@@ -27,7 +27,7 @@ class Main extends React.Component {
   componentDidMount() {
     // Get the latest history.
     helpers.getHistory().then(function(response) {
-      console.log(response);
+      // console.log(response);
       if (response !== this.state.history) {
         console.log("History", response.data);
         this.setState({ history: response.data });
@@ -36,11 +36,14 @@ class Main extends React.Component {
   }
 
   handleResults(results) {
-    console.log("handle results")
+    console.log("Handle Results: ")
     this.setState({
       results: results
     }, () => {
+<<<<<<< HEAD
       // console.log("HERE")
+=======
+>>>>>>> 5f091c322221ac44ba98cccdf077a7f7cbf3cab6
       console.log(this.state.results)
     })
   }

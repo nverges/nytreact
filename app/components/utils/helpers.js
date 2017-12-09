@@ -26,7 +26,7 @@ var helper = {
         "end_date": end_date
       }
     }).then(function(res) {
-      console.log("Performs the Query");
+      console.log("Axios Response:");
       console.log(res.data.response.docs);
       callback(res.data.response.docs)
       return

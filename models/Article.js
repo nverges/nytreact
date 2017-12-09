@@ -15,12 +15,13 @@ var ArticleSchema = new Schema({
     // required: true
   },
   // link is a required string
+  snippet :{
+    type: String,
+  },
+  // No Validation
   date: {
     type: String,
     // required: true
-  },
-  snippet: {
-    type: String
   },
   // This only saves one note's ObjectId, ref refers to the Note model
   url: {
