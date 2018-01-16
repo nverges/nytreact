@@ -9,7 +9,6 @@ class Search extends React.Component {
     super(props)
     this.state= {
       topic: "",
-      term: "",
       searchTerm: "",
       startYr: "",
       endYr: "",

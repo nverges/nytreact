@@ -1,6 +1,6 @@
 // Include Server Dependencies
 const express = require("express");
-// const router = express.Router();
+const router = express.Router();
 const bodyParser = require("body-parser");
 const logger = require("morgan");
 const mongoose = require("mongoose");
@@ -50,8 +50,7 @@ module.exports = function(router) {
     // Delete route
     router.delete("/api/saved", function(req, res) {
         console.log(req.body);
-        Article.findOneAndRemove({
-          _id: req.body}, function(err, doc) {
+        Article.findOneAndRemove({ _id: req.body }, function(err, doc) {
           if (err) {
             console.log(err);
           }
