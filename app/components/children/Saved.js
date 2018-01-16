@@ -20,6 +20,7 @@ class Saved extends React.Component {
   }
 
   renderHistory() {
+
     return _.map(this.props.history, (entry, index) => {
 
       return (
@@ -28,7 +29,7 @@ class Saved extends React.Component {
 
           saveClickHandler={this.props.saveClickHandler}
           deleteClickHandler={this.props.deleteClickHandler}
-          saved={false} 
+          saved={true} 
           article_id={entry.article_id}
           title={entry.title}
           date={entry.date}
@@ -40,21 +41,45 @@ class Saved extends React.Component {
 
       )
     });
-  };
-  
-  render() {
+  }
+
+  renderNoHistory() {
     return (
       <div className="panel panel-primary">
 
         <div className="panel-heading">{this.state.title}</div>
 
           <div className="panel-body">
-            {this.renderHistory()}
+            <h4>There are no Saved Articles here yet...</h4>
           </div>
 
       </div>
     );
   }
+  
+  render() {
+
+    if (this.props.history.length === 0) {
+      return (
+        <div>
+          {this.renderNoHistory()}
+        </div>
+      )
+    } else {
+      return (
+        <div className="panel panel-primary">
+
+          <div className="panel-heading">{this.state.title}</div>
+
+            <div className="panel-body">
+              {this.renderHistory()}
+            </div>
+
+        </div>
+      );
+    }
+  }
+
 };
 
 Saved.displayName = "Saved";

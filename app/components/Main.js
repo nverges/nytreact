@@ -3,8 +3,6 @@ import React from "react";
 import ReactDOM from "react-dom";
 
 // We need to include all of the components we"re utilizing
-// import Navbar from "./components/Navbar";
-// import Jumbotron from "./children/Jumbotron";
 import Search from "./children/Search";
 import Results from './children/Results';
 import Saved from './children/Saved';
@@ -56,6 +54,7 @@ class Main extends React.Component {
     ).then((res) => {
         // console.log(res.data);
             // update state of Main component 'this.state.history'
+            // console.log(res);
         const newState = this.state.history.concat(res.data);
         this.setState({history: newState})
     });
@@ -64,16 +63,15 @@ class Main extends React.Component {
   deleteClickHandler(_id) {
 
     // delete from DB
-    helpers.deleteHistory(
-      _id
-    ).then( (res) => {
+    helpers.deleteHistory(_id)
+      .then((res) => {
       // return data;
-      return res;
+      // return res;
       console.log(res);
-      console.log('SUCCESSSSSSSS');
-      const newState = this.state.history.splice(res);
-      return newState;
-      this.setState({history: newState});
+      console.log('Delete Click Handler');
+      // let updatedState = this.state.history.splice(res);
+      // return newState;
+      // this.setState({history: updatedState});
     });
   }
 

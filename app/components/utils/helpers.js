@@ -27,7 +27,7 @@ var helper = {
       }
     }).then(function(res) {
       console.log("Axios Response:");
-      console.log(res.data.response.docs);
+      // console.log(res.data.response.docs);
       callback(res.data.response.docs)
       return
       // return res.data.response;

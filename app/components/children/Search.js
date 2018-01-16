@@ -7,7 +7,7 @@ class Search extends React.Component {
 
   constructor (props) {
     super(props)
-    this.state= {
+    this.state = {
       topic: "",
       searchTerm: "",
       startYr: "",
@@ -48,8 +48,7 @@ class Search extends React.Component {
               onChange={this.handleChange.bind(this, "topic")}
               className="form-control" 
               id="topicInput" 
-              placeholder="Topic" 
-              />
+              placeholder="Topic" />
             </div>
 
             <div className="form-group">

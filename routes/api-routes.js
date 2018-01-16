@@ -43,21 +43,24 @@ module.exports = function(router) {
             }
             else {
               res.send(req.body);
+            //   console.log('saved on: ', Date.now());
             }
         });
     });
 
     // Delete route
     router.delete("/api/saved", function(req, res) {
-        console.log(req.body);
-        Article.findOneAndRemove({ _id: req.body }, function(err, doc) {
+        console.log('Delete Article ID: ', req.body);
+        const { _id } = req.body;
+        Article.findOneAndRemove(_id, function(err, doc) {
           if (err) {
             console.log(err);
           }
           else {
             res.send(doc);
+            console.log('Article Deleted');
           }
-        })
+        });
       });
 
 };

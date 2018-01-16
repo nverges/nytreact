@@ -23,7 +23,7 @@ class Results extends React.Component {
 
           saveClickHandler={this.props.saveClickHandler}
           deleteClickHandler={this.props.deleteClickHandler}
-          saved={true} 
+          saved={false} 
           title={entry.headline.main} 
           article_id={entry._id}
           url={entry.web_url}
@@ -40,10 +40,10 @@ class Results extends React.Component {
   render() {
     return (
       <div className="panel panel-primary">
-      <div className="panel-heading">{this.state.title}</div>
-        <div className="panel-body">
-          {this.renderResults()}
-        </div>
+        <div className="panel-heading">{this.state.title}</div>
+          <div className="panel-body">
+            {this.renderResults()}
+          </div>
       </div>
     );
   }
