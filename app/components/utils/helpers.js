@@ -27,7 +27,7 @@ var helper = {
       }
     }).then(function(res) {
       console.log("Axios Response:");
-      // console.log(res.data.response.docs);
+      console.log(res.data.response.docs);
       callback(res.data.response.docs)
       return
       // return res.data.response;
@@ -52,7 +52,7 @@ var helper = {
     });
   },
 
-  deleteHistory: function(_id) {
+  deleteArticle: function(_id) {
       return axios({
         method: 'delete',
         url: '/api/saved',

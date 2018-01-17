@@ -21,8 +21,7 @@ class Main extends React.Component {
       }
   }
 
-  // The moment the page renders get the History
-  componentDidMount() {
+  getSavedArticles() {
     // Get the latest history.
     helpers.getHistory().then(function(response) {
       // console.log(response);
@@ -31,6 +30,13 @@ class Main extends React.Component {
         this.setState({ history: response.data });
       }
     }.bind(this));
+  }
+
+  // The moment the page renders get the History
+  componentDidMount() {
+
+    // gets saved articles from DB
+    this.getSavedArticles();
   }
 
   handleResults(results) {
@@ -61,22 +67,24 @@ class Main extends React.Component {
   } 
 
   deleteClickHandler(_id) {
+    // console.log(_id);
 
     // delete from DB
-    helpers.deleteHistory(_id)
-      .then((res) => {
-      // return data;
-      // return res;
-      console.log(res);
-      console.log('Delete Click Handler');
+    helpers.deleteArticle(_id)
+      .then(res => {
+      // console.log(res);
+
+      this.getSavedArticles();
+
+
+      // NEED TO SET UPDATED STATE HERE
+
+
       // let updatedState = this.state.history.splice(res);
       // return newState;
       // this.setState({history: updatedState});
     });
   }
-
-
-
 
   render () {
       return (
