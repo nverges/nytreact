@@ -9,12 +9,10 @@ var ArticleSchema = new Schema({
   article_id: {
     type: String,
   },
-  // title is a required string
   title: {
     type: String,
     // required: true
   },
-  // link is a required string
   snippet :{
     type: String,
   },

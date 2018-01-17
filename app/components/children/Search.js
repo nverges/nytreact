@@ -73,6 +73,7 @@ class Search extends React.Component {
 
             <div className='text-center'>
               <button type="submit" className="btn btn-success">Search</button>
+              {/* <button className='btn btn-default' type='submit' onSubmit={this.props.clearSearchResults()}>Clear</button> */}
             </div>
 
           </form>

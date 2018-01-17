@@ -50,7 +50,7 @@ class ResultsRow extends React.Component {
             <div className="panel-body">
                 {this.props.snippet}
                 <p />
-                <a href={this.props.date} target="_blank">{this.props.date}</a>
+                <a href={this.props.url} target="_blank">{this.props.url}</a>
             </div>
 
         </div>

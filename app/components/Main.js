@@ -48,7 +48,7 @@ class Main extends React.Component {
     })
   }
 
-  saveClickHandler(article_id, title, url, date, snippet) {
+  saveClickHandler(article_id, title, date, url, snippet) {
 
     // save to DB
     helpers.postHistory(
@@ -75,15 +75,12 @@ class Main extends React.Component {
       // console.log(res);
 
       this.getSavedArticles();
-
-
-      // NEED TO SET UPDATED STATE HERE
-
-
-      // let updatedState = this.state.history.splice(res);
-      // return newState;
-      // this.setState({history: updatedState});
     });
+  }
+
+  clearSearchResults() {
+    // this.setState({ results: [] });
+    // console.log('trigger');
   }
 
   render () {
@@ -98,7 +95,7 @@ class Main extends React.Component {
               </div>
 
               {/* Render Components */}
-              <Search  runQuery={helpers.runQuery.bind(this, this.handleResults.bind(this))}/>
+              <Search  clearSearchResults={this.clearSearchResults.bind(this)} runQuery={helpers.runQuery.bind(this, this.handleResults.bind(this))}/>
               <Results results={this.state.results} saveClickHandler={this.saveClickHandler.bind(this)} deleteClickHandler={this.deleteClickHandler.bind(this)} />
               <Saved history={this.state.history} saveClickHandler={this.saveClickHandler.bind(this)} deleteClickHandler={this.deleteClickHandler.bind(this)} />
 
